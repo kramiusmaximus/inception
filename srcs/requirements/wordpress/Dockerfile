@@ -12,7 +12,6 @@ COPY wp-config.php /tmp
 RUN cp /tmp/wp-config.php /var/www/html/
 COPY wp.sh /tmp
 RUN chmod +x /tmp/wp.sh
-RUN ./tmp/wp.sh
 
 RUN sed -i "s/listen = \/run\/php\/php7.3-fpm.sock/listen = 9000/" "/etc/php/7.3/fpm/pool.d/www.conf"
 
@@ -21,6 +20,6 @@ RUN sed -i "s/listen = \/run\/php\/php7.3-fpm.sock/listen = 9000/" "/etc/php/7.3
 
 EXPOSE 9000 3306
 ENTRYPOINT ["./tmp/wp.sh"]
-CMD /usr/sbin/php-fpm7.3 --nodaemonize
+CMD ["/usr/sbin/php-fpm7.3 --nodaemonize"]
 #CMD tail -f /dev/null
 

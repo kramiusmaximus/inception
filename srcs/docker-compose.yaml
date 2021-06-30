@@ -1,5 +1,6 @@
-services:
 
+
+services:
   mariadb:
     image: mariadb_img
     container_name: mariadb
@@ -8,61 +9,49 @@ services:
     restart: unless-stopped
     user: root
     networks:
-      - inception
+    - inception
     volumes:
-      - db:/var/www/
-
+    - db:/var/www/
   wordpress:
     image: wordpress_img
     container_name: wordpress
     env_file: .env
     depends_on:
-      - mariadb
+    - mariadb
     build: ./requirements/wordpress
     restart: unless-stopped
     networks:
-      - inception
+    - inception
     volumes:
-      - wp:/var/www/
-
+    - wp:/var/www/
   nginx:
     image: nginx_img
     container_name: nginx
     env_file: .env
     depends_on:
-      - wordpress
+    - wordpress
     build: ./requirements/nginx
     restart: unless-stopped
     networks:
-      - inception
+    - inception
     volumes:
-      - wp:/var/www/
-      # - type: volume
-      #   source: wp
-      #   target: /home/pfelipa/data/wp
-      #   volume:
-      #     nocopy: true
+    - wp:/var/www/
     ports:
-      - "443:443"
+    - "443:443"
 
-# volumes:
-#   db:
-#     name: db
-#     driver_opts:
-#       type: none
-#       o: bind
-#       device: /home/pfelipa/data/db
-#   wp:
-#     name: wp
-#     driver_opts:
-#       type: none
-#       o: bind
-#       device: /home/pfelipa/data/wp
 volumes:
   db:
-    external: true
+    name: db
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/pfelipa/data/db
   wp:
-    external: true
+    name: wp
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/pfelipa/data/wp
 
 networks:
     inception:

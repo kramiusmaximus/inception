@@ -7,7 +7,7 @@ if [ ! -d var/lib/mysql/wordpress ]; then
 	mysql -u root -e "create database if not exists $MYSQL_DATABASE"
 	mysql -u root -e "create user if not exists '$MYSQL_USER' identified by '$MYSQL_PASSWORD'"
 	mysql -u root -e "grant all privileges on $MYSQL_DATABASE.* to '$MYSQL_USER'"
-	#mysql -u root -e "FLUSH PRIVILEGES"
+	mysql -u root -e "FLUSH PRIVILEGES"
 	#mysqladmin --user=root password $MYSQL_ROOT_PASSWORD
 	service mysql stop
 else

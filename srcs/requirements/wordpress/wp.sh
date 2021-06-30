@@ -7,3 +7,4 @@ chown -R www-data:www-data /var/www/html/
 wp core install --allow-root --path=/var/www/html/ --url=pfelipa.42.fr --title=dong --admin_user=pfelipa --admin_password=password --admin_email=ass@cheeks.com
 cd /var/www/html/
 wp user create  --allow-root pfelipa2 cheeks@ass.com --user_pass=password
+exec "$@"
