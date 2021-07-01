@@ -15,11 +15,11 @@ RUN chmod +x /tmp/wp.sh
 
 RUN sed -i "s/listen = \/run\/php\/php7.3-fpm.sock/listen = 9000/" "/etc/php/7.3/fpm/pool.d/www.conf"
 
-#RUN service php7.3-fpm start
-#RUN service php7.3-fpm stop
-
 EXPOSE 9000 3306
+RUN chmod +x /usr/sbin/php-fpm7.3
+RUN service php7.3-fpm start
+RUN service php7.3-fpm stop
 ENTRYPOINT ["./tmp/wp.sh"]
-CMD ["/usr/sbin/php-fpm7.3 --nodaemonize"]
+CMD /usr/sbin/php-fpm7.3 --nodaemonize
 #CMD tail -f /dev/null
 
