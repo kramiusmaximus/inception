@@ -11,7 +11,7 @@ services:
     networks:
     - inception
     volumes:
-    - db:/var/www/
+    - db:/var/lib/mysql
   wordpress:
     image: wordpress
     container_name: wordpress
