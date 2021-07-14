@@ -23,7 +23,7 @@ clean:	stop
 		sudo rm -rf /home/pfelipa/data/*/*
 		docker ps -qa | xargs docker stop || true
 		docker ps -qa | xargs docker rm || true
-		docker images -qa || xargs docker rmi -f || true
-		docker volume ls -q || xargs docker volume rm || true 
-		docker network ls -q || xargs docker network rm
+		docker images -qa | xargs docker rmi -f || true
+		docker volume ls -q | xargs docker volume rm || true 
+		docker network ls -q | xargs docker network rm
 
